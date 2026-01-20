@@ -1,0 +1,66 @@
+/* ===========================================
+   FUNDING MODEL DIAGRAM - DESIGN SYSTEM
+   =========================================== */
+
+.funding-model-diagram {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+}
+
+.funding-model-diagram__flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.funding-model-diagram__step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 400px;
+}
+
+.funding-model-diagram__step-number {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  flex-shrink: 0;
+}
+
+.funding-model-diagram__step-content {
+  flex: 1;
+}
+
+.funding-model-diagram__step-title {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.funding-model-diagram__step-description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-light);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.funding-model-diagram__arrow {
+  font-size: var(--text-2xl);
+  color: var(--color-accent-teal);
+  text-align: center;
+}

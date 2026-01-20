@@ -1,0 +1,53 @@
+/* ===========================================
+   UK PROJECT MAP - DESIGN SYSTEM
+   =========================================== */
+
+.uk-project-map {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  min-height: 500px;
+}
+
+.uk-project-map__svg {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+.uk-project-map__region {
+  fill: var(--color-primary);
+  stroke: var(--color-surface);
+  stroke-width: 2;
+  transition: fill var(--transition-fast);
+}
+
+.uk-project-map__region:hover {
+  fill: var(--color-primary-light);
+}
+
+.uk-project-map__legend {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.uk-project-map__legend-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-accent-teal);
+  border-radius: 50%;
+}

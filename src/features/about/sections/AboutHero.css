@@ -1,0 +1,58 @@
+/* ===========================================
+   ABOUT HERO - DESIGN SYSTEM
+   =========================================== */
+
+.about-hero {
+  padding: var(--space-16) 0 var(--space-12) 0;
+  background-color: var(--color-primary);
+  text-align: center;
+}
+
+.about-hero__content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-hero__subtitle {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-teal);
+  margin-bottom: var(--space-3);
+}
+
+.about-hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-medium);
+  color: white;
+  margin: 0 0 var(--space-5) 0;
+}
+
+/* Editorial emphasis */
+.about-hero__title em {
+  font-style: italic;
+  color: var(--color-accent-orange);
+}
+
+.about-hero__description {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-light);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .about-hero {
+    padding: var(--space-20) 0 var(--space-16) 0;
+  }
+
+  .about-hero__title {
+    font-size: var(--text-5xl);
+  }
+}

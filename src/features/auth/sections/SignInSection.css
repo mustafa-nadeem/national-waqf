@@ -1,0 +1,24 @@
+/* ===========================================
+   SIGN IN SECTION - DESIGN SYSTEM
+   =========================================== */
+
+.signin-section {
+  text-align: center;
+}
+
+.signin-section__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.signin-section__description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-light);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-6) 0;
+}

@@ -1,0 +1,14 @@
+/* ===========================================
+   PRINCIPLES SECTION - DESIGN SYSTEM
+   Uses Accordion with muted variant
+   =========================================== */
+
+.principles-section {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}
+
+.principles-section__content {
+  max-width: 800px;
+  margin: 0 auto;
+}

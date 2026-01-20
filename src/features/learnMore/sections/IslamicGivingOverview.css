@@ -1,0 +1,20 @@
+/* ===========================================
+   ISLAMIC GIVING OVERVIEW - DESIGN SYSTEM
+   =========================================== */
+
+.islamic-giving-overview {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}
+
+.islamic-giving-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .islamic-giving-overview__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,71 @@
+/* ===========================================
+   MAILBOX SIGNUP SECTION - DESIGN SYSTEM
+   =========================================== */
+
+.mailbox-signup-section {
+  padding: var(--section-padding);
+  background-color: var(--color-primary);
+}
+
+.mailbox-signup-section__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mailbox-signup-section__content {
+  text-align: center;
+}
+
+.mailbox-signup-section__subtitle {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-teal);
+  margin-bottom: var(--space-3);
+}
+
+.mailbox-signup-section__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+  color: white;
+  margin: 0 0 var(--space-4) 0;
+}
+
+.mailbox-signup-section__description {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-light);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.mailbox-signup-section__form-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-elevated);
+}
+
+@media (min-width: 768px) {
+  .mailbox-signup-section__layout {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+
+  .mailbox-signup-section__content {
+    text-align: left;
+  }
+
+  .mailbox-signup-section__title {
+    font-size: var(--text-3xl);
+  }
+}

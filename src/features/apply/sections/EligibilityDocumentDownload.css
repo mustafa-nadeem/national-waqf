@@ -1,0 +1,13 @@
+/* ===========================================
+   ELIGIBILITY DOCUMENT DOWNLOAD - DESIGN SYSTEM
+   =========================================== */
+
+.eligibility-document-download {
+  padding: var(--space-8) 0;
+  background-color: var(--color-background);
+}
+
+.eligibility-document-download__card {
+  max-width: 600px;
+  margin: 0 auto;
+}

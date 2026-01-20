@@ -1,0 +1,23 @@
+/* ===========================================
+   CONTAINER - DESIGN SYSTEM
+   =========================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Variants */
+.container--narrow {
+  max-width: 800px;
+}
+
+.container--wide {
+  max-width: 1400px;
+}
+
+.container--full {
+  max-width: none;
+}

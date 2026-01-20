@@ -1,0 +1,80 @@
+/* ===========================================
+   EMAIL SIGNUP FORM - DESIGN SYSTEM
+   =========================================== */
+
+.email-signup-form {
+  width: 100%;
+}
+
+.email-signup-form__field {
+  margin-bottom: var(--space-4);
+}
+
+.email-signup-form__label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.email-signup-form__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.email-signup-form__input:focus {
+  outline: none;
+  border-color: var(--color-accent-teal);
+  box-shadow: 0 0 0 3px rgba(2, 174, 168, 0.1);
+}
+
+.email-signup-form__input--error {
+  border-color: var(--color-error);
+}
+
+.email-signup-form__error {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-error);
+  margin-top: var(--space-2);
+}
+
+.email-signup-form__submit {
+  width: 100%;
+}
+
+/* Success State */
+.email-signup-form--success {
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.email-signup-form__success-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  margin: 0 auto var(--space-3) auto;
+}
+
+.email-signup-form__success-text {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  margin: 0;
+}

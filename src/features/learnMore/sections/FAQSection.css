@@ -1,0 +1,13 @@
+/* ===========================================
+   FAQ SECTION - DESIGN SYSTEM
+   =========================================== */
+
+.faq-section {
+  padding: var(--section-padding);
+  background-color: var(--color-surface);
+}
+
+.faq-section__content {
+  max-width: 800px;
+  margin: 0 auto;
+}

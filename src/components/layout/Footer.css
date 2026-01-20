@@ -1,0 +1,160 @@
+/* ===========================================
+   FOOTER COMPONENT - DESIGN SYSTEM
+   =========================================== */
+
+.footer {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--space-16) 0 var(--space-8) 0;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  margin-bottom: var(--space-10);
+}
+
+/* ─────────────────────────────────────────
+   BRAND SECTION
+   ───────────────────────────────────────── */
+.footer__brand {
+  max-width: 300px;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  margin-bottom: var(--space-4);
+}
+
+.footer__logo-mark {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  flex-shrink: 0;
+}
+
+.footer__logo-text {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: white;
+}
+
+.footer__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-light);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   LINK SECTIONS
+   ───────────────────────────────────────── */
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__links-title {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-teal);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.footer__links li {
+  margin-bottom: var(--space-2);
+}
+
+.footer__links a {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer__links a:hover {
+  color: white;
+}
+
+/* ─────────────────────────────────────────
+   CONTACT SECTION
+   ───────────────────────────────────────── */
+.footer__contact-title {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-teal);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.footer__contact-info p {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.footer__contact-info a {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer__contact-info a:hover {
+  color: white;
+}
+
+/* ─────────────────────────────────────────
+   BOTTOM BAR
+   ───────────────────────────────────────── */
+.footer__bottom {
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
+
+.footer__copyright {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.footer__charity {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────── */
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}

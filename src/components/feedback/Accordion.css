@@ -1,0 +1,103 @@
+/* ===========================================
+   ACCORDION COMPONENT - DESIGN SYSTEM
+   Single open at a time
+   Minimal animation
+   Clear +/– affordance
+   =========================================== */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.accordion-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.accordion-item--open {
+  border-color: var(--color-accent-teal);
+}
+
+/* ─────────────────────────────────────────
+   TRIGGER BUTTON
+   ───────────────────────────────────────── */
+.accordion-item__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.accordion-item__trigger:hover {
+  background-color: var(--color-background);
+}
+
+.accordion-item--open .accordion-item__trigger {
+  background-color: var(--color-background);
+}
+
+/* ─────────────────────────────────────────
+   +/- ICON AFFORDANCE
+   ───────────────────────────────────────── */
+.accordion-item__icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xl);
+  font-weight: var(--font-light);
+  color: var(--color-accent-teal);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+/* ─────────────────────────────────────────
+   CONTENT PANEL
+   ───────────────────────────────────────── */
+.accordion-item__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow);
+}
+
+.accordion-item--open .accordion-item__content {
+  max-height: 500px;
+}
+
+.accordion-item__body {
+  padding: 0 var(--space-6) var(--space-6) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-light);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* ─────────────────────────────────────────
+   MUTED VARIANT - For lists/secondary content
+   ───────────────────────────────────────── */
+.accordion--muted .accordion-item {
+  background-color: var(--color-background);
+  border-color: var(--color-border-light);
+}
+
+.accordion--muted .accordion-item--open {
+  border-color: var(--color-border);
+}

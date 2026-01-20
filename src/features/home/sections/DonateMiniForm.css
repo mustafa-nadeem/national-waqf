@@ -1,0 +1,133 @@
+/* ===========================================
+   DONATE MINI FORM - DESIGN SYSTEM
+   Elevated card for primary action
+   =========================================== */
+
+.donate-mini-form {
+  /* Form is inside elevated card container */
+}
+
+.donate-mini-form__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+  text-align: center;
+}
+
+.donate-mini-form__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-6) 0;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────
+   AMOUNT BUTTONS
+   ───────────────────────────────────────── */
+.donate-mini-form__amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.donate-mini-form__amount-btn {
+  padding: var(--space-3);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.donate-mini-form__amount-btn:hover {
+  border-color: var(--color-accent-teal);
+}
+
+.donate-mini-form__amount-btn--active {
+  background-color: var(--color-accent-teal);
+  border-color: var(--color-accent-teal);
+  color: white;
+}
+
+/* ─────────────────────────────────────────
+   CUSTOM AMOUNT INPUT
+   ───────────────────────────────────────── */
+.donate-mini-form__custom {
+  margin-bottom: var(--space-5);
+}
+
+.donate-mini-form__custom-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.donate-mini-form__custom-input:focus {
+  outline: none;
+  border-color: var(--color-accent-teal);
+  box-shadow: 0 0 0 3px rgba(2, 174, 168, 0.1);
+}
+
+/* ─────────────────────────────────────────
+   SUBMIT BUTTON - Donate CTA dominant
+   ───────────────────────────────────────── */
+.donate-mini-form__submit {
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────
+   ERROR & SUCCESS STATES
+   ───────────────────────────────────────── */
+.donate-mini-form__error {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-error);
+  margin-top: var(--space-3);
+  text-align: center;
+}
+
+.donate-mini-form--success {
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.donate-mini-form__success-icon {
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xl);
+  margin: 0 auto var(--space-4) auto;
+}
+
+.donate-mini-form__success-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.donate-mini-form__success-text {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}

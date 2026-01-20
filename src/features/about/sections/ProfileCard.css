@@ -1,0 +1,67 @@
+/* ===========================================
+   PROFILE CARD - DESIGN SYSTEM
+   White background, 1px border, large radius
+   =========================================== */
+
+.profile-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  transition: border-color var(--transition-fast);
+}
+
+.profile-card:hover {
+  border-color: var(--color-accent-teal);
+}
+
+.profile-card__image {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--space-4) auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--color-background);
+  border: 3px solid var(--color-border);
+}
+
+.profile-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  color: var(--color-text-muted);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+}
+
+.profile-card__name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.profile-card__role {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-accent-teal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--space-3) 0;
+}
+
+.profile-card__bio {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-light);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0;
+}

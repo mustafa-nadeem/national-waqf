@@ -1,0 +1,8 @@
+/* ===========================================
+   PROJECTS MAP SECTION - DESIGN SYSTEM
+   =========================================== */
+
+.projects-map-section {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}

@@ -1,0 +1,74 @@
+/* ===========================================
+   METRIC TILE - DESIGN SYSTEM
+   Large number, minimal label, clean grid
+   Some tiles larger than others
+   =========================================== */
+
+.metric-tile {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  transition: border-color var(--transition-fast);
+}
+
+.metric-tile:hover {
+  border-color: var(--color-accent-teal);
+}
+
+/* ─────────────────────────────────────────
+   LARGE NUMBER
+   ───────────────────────────────────────── */
+.metric-tile__value {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-medium);
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+/* ─────────────────────────────────────────
+   MINIMAL LABEL
+   ───────────────────────────────────────── */
+.metric-tile__label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   HIGHLIGHTED VARIANT - Featured metrics
+   ───────────────────────────────────────── */
+.metric-tile--highlight {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.metric-tile--highlight .metric-tile__value {
+  color: white;
+}
+
+.metric-tile--highlight .metric-tile__label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ─────────────────────────────────────────
+   LARGE VARIANT - Some tiles larger
+   ───────────────────────────────────────── */
+.metric-tile--large {
+  padding: var(--space-8);
+}
+
+.metric-tile--large .metric-tile__value {
+  font-size: var(--text-5xl);
+}
+
+.metric-tile--large .metric-tile__label {
+  font-size: var(--text-base);
+}

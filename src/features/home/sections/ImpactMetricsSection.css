@@ -1,0 +1,38 @@
+/* ===========================================
+   IMPACT METRICS SECTION - DESIGN SYSTEM
+   Clean grid, some tiles larger than others
+   =========================================== */
+
+.impact-metrics-section {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}
+
+.impact-metrics-section__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+/* Make first and last tiles span full width on mobile */
+.impact-metrics-section__grid > :first-child,
+.impact-metrics-section__grid > :last-child {
+  grid-column: span 2;
+}
+
+@media (min-width: 768px) {
+  .impact-metrics-section__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .impact-metrics-section__grid > :first-child,
+  .impact-metrics-section__grid > :last-child {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .impact-metrics-section__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

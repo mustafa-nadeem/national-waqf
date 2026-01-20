@@ -1,0 +1,64 @@
+/* ===========================================
+   CARD COMPONENT - DESIGN SYSTEM
+   White background, 1px light grey border,
+   Large rounded corners (16px), generous padding
+   No heavy shadows
+   =========================================== */
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: border-color var(--transition-fast);
+}
+
+/* ─────────────────────────────────────────
+   VARIANTS
+   ───────────────────────────────────────── */
+
+/* Default - subtle shadow on hover */
+.card--default:hover {
+  border-color: var(--color-border-light);
+}
+
+/* Elevated - ONLY for primary actions (e.g., Donate form) */
+.card--elevated {
+  border-color: transparent;
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Muted - for accordions or lists */
+.card--muted {
+  background-color: var(--color-background);
+  border-color: var(--color-border-light);
+}
+
+/* Interactive - clickable cards */
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  border-color: var(--color-accent-teal);
+}
+
+/* ─────────────────────────────────────────
+   PADDING SIZES
+   ───────────────────────────────────────── */
+
+.card--compact {
+  padding: var(--space-4);
+}
+
+.card--spacious {
+  padding: var(--space-8);
+}
+
+/* ─────────────────────────────────────────
+   NO BORDER VARIANT
+   ───────────────────────────────────────── */
+
+.card--borderless {
+  border: none;
+}

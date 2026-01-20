@@ -1,0 +1,16 @@
+/* ===========================================
+   POLICIES SECTION - DESIGN SYSTEM
+   =========================================== */
+
+.policies-section {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}
+
+.policies-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 700px;
+  margin: 0 auto;
+}

@@ -1,0 +1,26 @@
+/* ===========================================
+   TRUSTEES GRID - DESIGN SYSTEM
+   =========================================== */
+
+.trustees-grid {
+  padding: var(--section-padding);
+  background-color: var(--color-surface);
+}
+
+.trustees-grid__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .trustees-grid__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .trustees-grid__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

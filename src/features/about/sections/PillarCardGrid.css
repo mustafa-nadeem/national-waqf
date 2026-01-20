@@ -1,0 +1,26 @@
+/* ===========================================
+   PILLAR CARD GRID - DESIGN SYSTEM
+   =========================================== */
+
+.pillar-card-grid {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}
+
+.pillar-card-grid__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .pillar-card-grid__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pillar-card-grid__content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

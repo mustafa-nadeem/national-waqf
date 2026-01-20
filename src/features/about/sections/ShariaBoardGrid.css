@@ -1,0 +1,28 @@
+/* ===========================================
+   SHARIA BOARD GRID - DESIGN SYSTEM
+   =========================================== */
+
+.sharia-board-grid {
+  padding: var(--section-padding);
+  background-color: var(--color-background);
+}
+
+.sharia-board-grid__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .sharia-board-grid__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sharia-board-grid__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,29 @@
+/* ===========================================
+   FORM GROUP - DESIGN SYSTEM
+   =========================================== */
+
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-group__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-4) 0;
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.form-group__fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .form-group__fields--two-column {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

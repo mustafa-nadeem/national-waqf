@@ -1,0 +1,49 @@
+/* ===========================================
+   PROJECT MARKER - DESIGN SYSTEM
+   =========================================== */
+
+.project-marker {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-surface);
+  border: 3px solid var(--color-accent-teal);
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all var(--transition-fast);
+  z-index: 1;
+}
+
+.project-marker:hover,
+.project-marker--active {
+  background-color: var(--color-accent-teal);
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 2;
+}
+
+/* Pulse animation */
+.project-marker::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-accent-teal);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: marker-pulse 2s infinite;
+}
+
+@keyframes marker-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}

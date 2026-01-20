@@ -1,0 +1,88 @@
+/* ===========================================
+   PROJECT TOOLTIP CARD - DESIGN SYSTEM
+   =========================================== */
+
+.project-tooltip-card {
+  position: absolute;
+  width: 280px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+}
+
+.project-tooltip-card__close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 28px;
+  height: 28px;
+  background-color: var(--color-background);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast);
+}
+
+.project-tooltip-card__close:hover {
+  background-color: var(--color-border);
+}
+
+.project-tooltip-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+  padding-right: var(--space-8);
+}
+
+.project-tooltip-card__location {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-accent-teal);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.project-tooltip-card__description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-light);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.project-tooltip-card__impact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-tooltip-card__impact li {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  padding: var(--space-1) 0;
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.project-tooltip-card__impact li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-teal);
+  border-radius: 50%;
+}

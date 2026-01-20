@@ -1,0 +1,38 @@
+/* ===========================================
+   SUPPORTED LOGOS STRIP - DESIGN SYSTEM
+   =========================================== */
+
+.supported-logos-strip {
+  padding: var(--space-12) 0;
+  background-color: var(--color-background);
+}
+
+.supported-logos-strip__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.supported-logos-strip__logo {
+  width: 120px;
+  height: 60px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  transition: border-color var(--transition-fast);
+}
+
+.supported-logos-strip__logo:hover {
+  border-color: var(--color-accent-teal);
+}

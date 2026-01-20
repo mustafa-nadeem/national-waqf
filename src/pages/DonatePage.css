@@ -1,0 +1,147 @@
+.donate-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.donate-section {
+  padding: var(--section-padding);
+}
+
+.donate-section--alt {
+  background-color: var(--color-surface);
+}
+
+/* Form */
+.donate-form {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Amount Buttons */
+.donate-amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.donate-amount-btn {
+  padding: var(--space-4);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  background-color: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.donate-amount-btn:hover {
+  border-color: var(--color-primary);
+}
+
+.donate-amount-btn--active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* Row */
+.donate-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* Gift Aid */
+.donate-giftaid {
+  padding: var(--space-5);
+  background-color: var(--color-background-alt);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
+
+.donate-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.donate-checkbox input {
+  position: absolute;
+  opacity: 0;
+}
+
+.donate-checkbox__mark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.donate-checkbox input:checked + .donate-checkbox__mark {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.donate-checkbox input:checked + .donate-checkbox__mark::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+}
+
+.donate-giftaid__info {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: var(--space-3) 0 0 calc(20px + var(--space-3));
+}
+
+/* Payment Placeholder */
+.donate-payment-placeholder {
+  padding: var(--space-8);
+  background-color: var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.donate-payment-note {
+  font-size: var(--text-sm);
+  margin-top: var(--space-2);
+}
+
+/* Fundraiser */
+.donate-fundraiser {
+  text-align: center;
+  padding: var(--space-10);
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+}
+
+.donate-fundraiser h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-3);
+}
+
+.donate-fundraiser > p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.donate-fundraiser-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}

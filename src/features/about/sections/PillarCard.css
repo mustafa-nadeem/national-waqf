@@ -1,0 +1,52 @@
+/* ===========================================
+   PILLAR CARD - DESIGN SYSTEM
+   White background, 1px border, large radius
+   =========================================== */
+
+.pillar-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  transition: border-color var(--transition-fast);
+}
+
+.pillar-card:hover {
+  border-color: var(--color-accent-teal);
+}
+
+.pillar-card__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4) auto;
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillar-card__icon-placeholder {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-accent-teal);
+  border-radius: var(--radius-md);
+}
+
+.pillar-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.pillar-card__description {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-light);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}

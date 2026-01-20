@@ -1,0 +1,55 @@
+/* ===========================================
+   SIGN IN PAGE - DESIGN SYSTEM
+   =========================================== */
+
+.signin-page {
+  min-height: 100vh;
+  padding: var(--space-12) 0 var(--space-16) 0;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary) 30%, var(--color-background) 30%);
+}
+
+.signin-page__content {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.signin-page__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.signin-page__subtitle {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-teal);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.signin-page__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-medium);
+  color: white;
+  margin: 0;
+}
+
+.signin-page__card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-elevated);
+}
+
+@media (min-width: 768px) {
+  .signin-page {
+    padding: var(--space-16) 0 var(--space-20) 0;
+  }
+
+  .signin-page__card {
+    padding: var(--space-10);
+  }
+}

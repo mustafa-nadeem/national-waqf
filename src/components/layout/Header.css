@@ -1,0 +1,339 @@
+/* ===========================================
+   HEADER COMPONENT - DESIGN SYSTEM
+   Logo must respect safe spacing
+   No drop shadows on logo
+   Donate CTA visually dominant but not aggressive
+   =========================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: transparent;
+  border-bottom: none;
+  padding: 12px 0;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 32px;
+  
+  /* Liquid Glass Effect */
+  --figma-blur: 25.5px;
+  --figma-brightness: 1.04;
+  --figma-contrast: 1.075;
+  --figma-bg: rgba(255, 255, 255, 0.1);
+  --figma-border: 1px solid rgba(255, 255, 255, 0.1);
+  --figma-shadow: 0 7.5px 30px rgba(0, 0, 0, 0.045), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  --figma-border-radius: 50px;
+  
+  backdrop-filter: blur(var(--figma-blur)) brightness(var(--figma-brightness)) contrast(var(--figma-contrast));
+  background: var(--figma-bg);
+  border: var(--figma-border);
+  box-shadow: var(--figma-shadow);
+  border-radius: var(--figma-border-radius);
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: width;
+  contain: layout style paint;
+  isolation: isolate;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Smooth transitions for width */
+  /* When condensing: delay width to happen after fade-out */
+  /* When expanding: width happens immediately, elements fade in after */
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s,
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s;
+}
+
+/* When NOT condensed (expanding), width should happen immediately */
+.header__inner:not(.header__inner--condensed) {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* ─────────────────────────────────────────
+   CONDENSED STATE - Scrolling down
+   ───────────────────────────────────────── */
+.header__inner--condensed {
+  width: 500px;
+  padding: 0 24px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s,
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s;
+}
+
+/* ─────────────────────────────────────────
+   LOGO - Far left, safe spacing, no shadows
+   ───────────────────────────────────────── */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  padding: var(--space-2);
+  margin: calc(-1 * var(--space-2));
+  flex-shrink: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header__logo-mark {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  flex-shrink: 0;
+}
+
+.header__logo-text {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: #ffffff;
+  opacity: 1;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  /* When condensing: fade out immediately */
+  /* When expanding: delay fade-in to happen after width expands */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* Hide logo text when condensed - fade out immediately */
+.header__inner--condensed .header__logo-text {
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* When expanding, delay fade-in until after width expands */
+.header__inner:not(.header__inner--condensed) .header__logo-text {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+}
+
+/* ─────────────────────────────────────────
+   NAVIGATION - Centered in middle
+   ───────────────────────────────────────── */
+.header__nav {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  /* When condensing: fade out immediately */
+  /* When expanding: delay fade-in to happen after width expands */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* Hide nav when condensed - smooth dissolve, fade out immediately */
+.header__inner--condensed .header__nav {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* When expanding, delay fade-in until after width expands */
+.header__inner:not(.header__inner--condensed) .header__nav {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav-item a {
+  display: block;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast);
+}
+
+.header__nav-item a:hover {
+  color: #ffffff;
+}
+
+.header__nav-item a.active {
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────
+   ACTIONS - Far right, Donate CTA dominant
+   ───────────────────────────────────────── */
+.header__actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header__sign-in-btn {
+  opacity: 1;
+  max-width: 100px;
+  overflow: hidden;
+  /* When condensing: fade out immediately */
+  /* When expanding: delay fade-in to happen after width expands */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              margin 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* Hide sign-in button when condensed - smooth dissolve, fade out immediately */
+.header__inner--condensed .header__sign-in-btn {
+  opacity: 0;
+  max-width: 0;
+  margin: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              margin 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+/* When expanding, delay fade-in until after width expands */
+.header__inner:not(.header__inner--condensed) .header__sign-in-btn {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
+              margin 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+}
+
+.header__donate-btn {
+  flex-shrink: 0;
+}
+
+.header__actions .button {
+  font-size: var(--text-sm);
+  border-radius: var(--radius-full);
+  padding: 8px 10px 8px 12px;
+  color: #ffffff;
+}
+
+.header__actions .button--secondary {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.header__actions .button--secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.header__actions .button--donate {
+  background-color: var(--color-accent-orange);
+  border-color: var(--color-accent-orange);
+  color: #ffffff;
+}
+
+.header__actions .button--donate:hover:not(:disabled) {
+  background-color: #e57d48;
+  border-color: #e57d48;
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE MENU TOGGLE
+   ───────────────────────────────────────── */
+.header__mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.header__mobile-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header__hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.header__hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE - Desktop
+   ───────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .header__nav {
+    display: block;
+  }
+
+  .header__actions {
+    display: flex;
+  }
+
+  .header__mobile-toggle {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE - Mobile/Tablet
+   ───────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .header {
+    padding: 0;
+  }
+
+  .header__inner {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 0 var(--container-padding);
+    backdrop-filter: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+
+  .header__inner--condensed {
+    width: 100%;
+  }
+}

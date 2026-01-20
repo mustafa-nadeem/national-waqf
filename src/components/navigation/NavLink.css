@@ -1,0 +1,20 @@
+/* ===========================================
+   NAV LINK - DESIGN SYSTEM
+   =========================================== */
+
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-accent-teal);
+}
+
+.nav-link.active {
+  color: var(--color-accent-teal);
+}

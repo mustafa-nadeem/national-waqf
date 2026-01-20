@@ -1,0 +1,26 @@
+/* ===========================================
+   IMPACT METRICS GRID - DESIGN SYSTEM
+   =========================================== */
+
+.impact-metrics-grid {
+  padding: var(--section-padding);
+  background-color: var(--color-surface);
+}
+
+.impact-metrics-grid__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .impact-metrics-grid__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .impact-metrics-grid__content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

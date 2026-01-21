@@ -1,20 +1,270 @@
 /* ===========================================
-   WHAT IS WAQF SECTION - DESIGN SYSTEM
+   WHAT IS WAQF SECTION - DIAGONAL TO HORIZONTAL ALIGNMENT
    =========================================== */
 
-.what-is-waqf-section {
+.what-is-waqf {
   padding: var(--section-padding);
+  padding-top: 120px;
+  padding-bottom: var(--space-20, 120px);
   background-color: var(--color-background);
+  position: relative;
+  overflow: hidden;
 }
 
-.what-is-waqf-section__grid {
+.what-is-waqf__hero {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.what-is-waqf__title {
+  font-size: 4rem;
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium, 500);
+  color: var(--color-text);
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.02em;
+  /* Each word positioned independently for multi-axis movement */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+}
+
+/* Individual word - multi-axis animation (X and Y) */
+.what-is-waqf__title-part {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  /* Smooth interpolation during scroll */
+  transition: transform 0.5s linear;
+  margin: 0 -0.05em;
+}
+@media (max-width: 767px) {
+  .what-is-waqf__hero {
+    height: 280px;
+  }
+
+  .what-is-waqf__title {
+    font-size: 2.2rem;
+    gap: 0.2em;
+  }
+
+  .what-is-waqf__title-part {
+    margin: 0 0.1em;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .what-is-waqf__hero {
+    height: 325px;
+  }
+
+  .what-is-waqf__title {
+    font-size: 6rem;
+    gap: -0.05em;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .what-is-waqf__hero {
+    height: 300px;
+  }
+
+  .what-is-waqf__title {
+    font-size: 9rem;
+  }
+}
+
+/* Premium smooth easing for scroll-linked motion */
+@supports (scroll-behavior: smooth) {
+  .what-is-waqf__title-part {
+    transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* ===========================================
+   TIMELINE - Inline within What is Waqf
+   =========================================== */
+
+.what-is-waqf__timeline {
+  padding-top: var(--space-8, 40px);
+  position: relative;
+}
+
+.what-is-waqf__timeline-rail {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 60px;
+}
+
+/* Timeline Step */
+.what-is-waqf__step {
+  position: relative;
+  padding-bottom: var(--space-12, 60px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.what-is-waqf__step--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.what-is-waqf__step:last-child {
+  padding-bottom: var(--space-8, 40px);
+}
+
+/* Timeline Dot & Line */
+.what-is-waqf__dot-container {
+  position: absolute;
+  left: -60px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.what-is-waqf__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-border, #d1d1d1);
+  border: 2px solid var(--color-background, #f8f8f6);
+  transition: all 0.4s ease;
+  z-index: 2;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.what-is-waqf__dot--active {
+  background-color: var(--color-text, #1a1a2e);
+  transform: scale(1.1);
+}
+
+.what-is-waqf__line {
+  width: 1.5px;
+  flex: 1;
+  background-color: var(--color-border, #d0d0d0);
+  margin-top: 6px;
+  margin-bottom: -60px;
+  z-index: 1;
+}
+
+/* Step Row (Content + Image) */
+.what-is-waqf__step-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
+  gap: var(--space-6, 24px);
+  align-items: start;
+  margin-top: -2px;
 }
 
 @media (min-width: 768px) {
-  .what-is-waqf-section__grid {
-    grid-template-columns: repeat(3, 1fr);
+  .what-is-waqf__step-row {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10, 48px);
+  }
+}
+
+/* Step Content */
+.what-is-waqf__step-content {
+  padding-right: var(--space-4, 16px);
+}
+
+.what-is-waqf__step-title {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: 1.35rem;
+  font-weight: var(--font-semibold, 600);
+  color: var(--color-text, #1a1a2e);
+  margin: 0 0 var(--space-2, 8px) 0;
+  line-height: 1;
+}
+
+.what-is-waqf__step-description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1rem;
+  font-weight: var(--font-light, 300);
+  line-height: 1.7;
+  color: var(--color-text-muted, #6b6b7b);
+  margin: 0;
+  max-width: 380px;
+}
+
+/* Step Image */
+.what-is-waqf__step-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.what-is-waqf__step-image img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  display: block;
+}
+
+/* Mobile Timeline Adjustments */
+@media (max-width: 767px) {
+  .what-is-waqf__timeline {
+    padding-top: var(--space-6, 24px);
+  }
+
+  .what-is-waqf__timeline-rail {
+    padding-left: 40px;
+  }
+
+  .what-is-waqf__dot-container {
+    left: -40px;
+  }
+
+  .what-is-waqf__step {
+    padding-bottom: var(--space-10, 48px);
+  }
+
+  .what-is-waqf__step-title {
+    font-size: 1.15rem;
+  }
+
+  .what-is-waqf__step-description {
+    font-size: 0.95rem;
+  }
+
+  .what-is-waqf__step-image img {
+    max-width: 200px;
+  }
+
+  .what-is-waqf__dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .what-is-waqf__line {
+    margin-bottom: -48px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .what-is-waqf__step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .what-is-waqf__dot {
+    transition: none;
   }
 }

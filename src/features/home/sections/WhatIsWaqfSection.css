@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-bottom: 80px;
 }
 
 .what-is-waqf__title {
@@ -48,7 +49,8 @@
 }
 @media (max-width: 767px) {
   .what-is-waqf__hero {
-    height: 280px;
+    height: 400px;
+    margin-bottom: 48px;
   }
 
   .what-is-waqf__title {
@@ -65,6 +67,7 @@
 @media (min-width: 768px) {
   .what-is-waqf__hero {
     height: 325px;
+    margin-bottom: 64px;
   }
 
   .what-is-waqf__title {
@@ -77,6 +80,7 @@
 @media (min-width: 1024px) {
   .what-is-waqf__hero {
     height: 300px;
+    margin-bottom: 80px;
   }
 
   .what-is-waqf__title {
@@ -111,18 +115,6 @@
 .what-is-waqf__step {
   position: relative;
   padding-bottom: var(--space-12, 60px);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.what-is-waqf__step--visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.what-is-waqf__step:last-child {
-  padding-bottom: var(--space-8, 40px);
 }
 
 /* Timeline Dot & Line */
@@ -156,10 +148,39 @@
 .what-is-waqf__line {
   width: 1.5px;
   flex: 1;
-  background-color: var(--color-border, #d0d0d0);
   margin-top: 6px;
-  margin-bottom: -60px;
+  margin-bottom: 0;
   z-index: 1;
+  transition: background 0.15s ease;
+  background: linear-gradient(
+    to bottom,
+    #2B346C 0%,
+    #2B346C var(--is-filled, 0%),
+    #e0e0e0 var(--is-filled, 0%),
+    #e0e0e0 100%
+  );
+}
+
+/* Line 0: Show current fill when it's the active line, 100% when done */
+.what-is-waqf__step:nth-child(1) .what-is-waqf__line {
+  background: linear-gradient(
+    to bottom,
+    #2B346C 0%,
+    #2B346C var(--is-filled, 0),
+    #e0e0e0 var(--is-filled, 0),
+    #e0e0e0 100%
+  );
+}
+
+/* Line 1: Show 0% until first line is done, then fill from 0-100%, then stay filled */
+.what-is-waqf__step:nth-child(2) .what-is-waqf__line {
+  background: linear-gradient(
+    to bottom,
+    #2B346C 0%,
+    #2B346C var(--is-filled, 0%),
+    #e0e0e0 var(--is-filled, 0%),
+    #e0e0e0 100%
+  );
 }
 
 /* Step Row (Content + Image) */
@@ -169,6 +190,14 @@
   gap: var(--space-6, 24px);
   align-items: start;
   margin-top: -2px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.what-is-waqf__step--visible .what-is-waqf__step-row {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (min-width: 768px) {
@@ -211,7 +240,7 @@
 
 .what-is-waqf__step-image img {
   width: 100%;
-  max-width: 280px;
+  max-width: 196px;
   height: auto;
   display: block;
 }
@@ -243,24 +272,18 @@
   }
 
   .what-is-waqf__step-image img {
-    max-width: 200px;
+    max-width: 140px;
   }
 
   .what-is-waqf__dot {
     width: 10px;
     height: 10px;
   }
-
-  .what-is-waqf__line {
-    margin-bottom: -48px;
-  }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .what-is-waqf__step {
-    opacity: 1;
-    transform: none;
+  .what-is-waqf__step-row {
     transition: none;
   }
   

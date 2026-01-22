@@ -1,42 +1,68 @@
-import Container from '../../../components/layout/Container';
-import SectionHeader from '../../../components/ui/SectionHeader';
-import MetricTile from './MetricTile';
+import ImpactStatBlock from './ImpactStatBlock';
 import './ImpactMetricsSection.css';
 
+/**
+ * ImpactMetricsSection - Editorial typography-led layout
+ * 
+ * Inspired by editorial compositions with strong whitespace
+ * and asymmetric placement. No tiles, no cards—just typography.
+ * 
+ * Layout:
+ * - Top-left anchor block (4422 supporters)
+ * - Lower centerpiece block (£645k+ raised)  
+ * - Right-side supporting block (9 organisations)
+ */
+
 const METRICS = [
-  { id: 'funds', value: '£3m+', label: 'Total Funds Raised', size: 'large', highlight: true },
-  { id: 'projects', value: '60+', label: 'Projects Funded', size: 'default' },
-  { id: 'years', value: '10', label: 'Years of Impact', size: 'default' },
-  { id: 'allocation', value: '100%', label: 'Sharia Compliant', size: 'default' },
-  { id: 'growth', value: '8%', label: 'Average Annual Return', size: 'default' },
-  { id: 'communities', value: '25+', label: 'Communities Served', size: 'large' },
+  {
+    id: 'supporters',
+    value: '4422',
+    label: 'Supporters of our Waqf',
+    position: 'top-left',
+  },
+  {
+    id: 'funds',
+    value: '£645k+',
+    label: 'Total funds raised to date',
+    position: 'middle',
+  },
+  {
+    id: 'orgs',
+    value: '9',
+    label: 'Organisations/Charities funded to date',
+    position: 'bottom-right',
+  },
 ];
 
 export default function ImpactMetricsSection() {
   return (
-    <section className="impact-metrics">
-      <Container>
-        <SectionHeader
-          subtitle="Our Track Record"
-          title="The Impact We Have Made"
-          description="Real numbers that demonstrate the difference your contributions make in communities across the United Kingdom."
-        />
-        <div className="impact-metrics__grid">
-          {METRICS.map((metric) => (
-            <div
-              key={metric.id}
-              className={`impact-metrics__item impact-metrics__item--${metric.size || 'default'}`}
-            >
-              <MetricTile
-                value={metric.value}
-                label={metric.label}
-                size={metric.size}
-                highlight={metric.highlight}
-              />
-            </div>
-          ))}
+    <section className="impact-metrics-editorial">
+      <h2 className="impact-metrics-editorial__title">The Impact We Have Made</h2>
+      <div className="impact-metrics-editorial__container">
+        {/* Top-left stat */}
+        <div className="impact-metrics-editorial__block impact-metrics-editorial__block--top-left">
+          <ImpactStatBlock
+            value={METRICS[0].value}
+            label={METRICS[0].label}
+          />
         </div>
-      </Container>
+
+        {/* Middle stat */}
+        <div className="impact-metrics-editorial__block impact-metrics-editorial__block--middle">
+          <ImpactStatBlock
+            value={METRICS[1].value}
+            label={METRICS[1].label}
+          />
+        </div>
+
+        {/* Bottom-right stat */}
+        <div className="impact-metrics-editorial__block impact-metrics-editorial__block--bottom-right">
+          <ImpactStatBlock
+            value={METRICS[2].value}
+            label={METRICS[2].label}
+          />
+        </div>
+      </div>
     </section>
   );
 }

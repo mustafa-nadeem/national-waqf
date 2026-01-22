@@ -58,3 +58,50 @@
     font-size: var(--text-4xl);
   }
 }
+
+/* ===========================================
+   ANIMATED TITLE STYLES
+   Premium staggered entrance animation
+   =========================================== */
+
+.section-header__title--animated {
+  --stagger-duration: 0.55s;
+  --stagger-gap: 0.2s;
+  --movement-distance: 16px;
+  --easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-header__title--animated .section-header__title-part {
+  display: inline-block;
+  margin-right: 0.25em;
+  opacity: 0;
+  transform: translateY(var(--movement-distance));
+  animation: titleStaggerIn var(--stagger-duration) var(--easing) forwards;
+  animation-delay: inherit;
+}
+
+/* Keyframe animation: fade-in + upward slide */
+@keyframes titleStaggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--movement-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness: shorter movement, snappier timing */
+@media (max-width: 767px) {
+  .section-header__title--animated {
+    --movement-distance: 12px;
+    --stagger-duration: 0.5s;
+    --stagger-gap: 0.15s;
+  }
+}
+
+/* Slight emphasis on the second part (if applicable) */
+.section-header__title--animated .section-header__title-part:last-child {
+  font-weight: var(--font-semibold, 600);
+}

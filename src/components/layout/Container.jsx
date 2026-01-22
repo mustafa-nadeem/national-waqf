@@ -9,7 +9,7 @@ export default function Container({
 }) {
   const classNames = [
     'container',
-    `container--${size}`,
+    size && `container--${size}`,
     !padding && 'container--no-padding',
     className,
   ].filter(Boolean).join(' ');

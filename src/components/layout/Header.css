@@ -47,17 +47,9 @@
   isolation: isolate;
   -webkit-font-smoothing: antialiased;
   
-  /* Smooth transitions for width */
-  /* When condensing: delay width to happen after fade-out */
-  /* When expanding: width happens immediately, elements fade in after */
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s,
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s;
-}
-
-/* When NOT condensed (expanding), width should happen immediately */
-.header__inner:not(.header__inner--condensed) {
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  /* Smooth transitions for width - default (expanding) */
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              padding 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 /* ─────────────────────────────────────────
@@ -66,8 +58,9 @@
 .header__inner--condensed {
   width: 500px;
   padding: 0 24px;
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s,
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s;
+  /* When condensing: delay width to happen after fade-out */
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.25s,
+              padding 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 }
 
 /* ─────────────────────────────────────────
@@ -76,56 +69,46 @@
 .header__logo {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
   text-decoration: none;
   padding: var(--space-2);
   margin: calc(-1 * var(--space-2));
   flex-shrink: 0;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.header__logo-mark {
-  width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  flex-shrink: 0;
+  position: relative;
 }
 
-.header__logo-text {
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: var(--font-medium);
-  color: #ffffff;
+.header__logo-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  position: absolute;
+  left: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark logo (for hero section - first 97%) */
+.header__logo-img--dark {
   opacity: 1;
-  max-width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  /* When condensing: fade out immediately */
-  /* When expanding: delay fade-in to happen after width expands */
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  visibility: visible;
 }
 
-/* Hide logo text when condensed - fade out immediately */
-.header__inner--condensed .header__logo-text {
+.header__logo-img--dark.header__logo-img--hidden {
   opacity: 0;
-  max-width: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  visibility: hidden;
 }
 
-/* When expanding, delay fade-in until after width expands */
-.header__inner:not(.header__inner--condensed) .header__logo-text {
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+/* Light logo (for after 97% of hero) */
+.header__logo-img--light {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.header__logo-img--light:not(.header__logo-img--hidden) {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ─────────────────────────────────────────
@@ -139,8 +122,8 @@
   opacity: 1;
   /* When condensing: fade out immediately */
   /* When expanding: delay fade-in to happen after width expands */
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 /* Hide nav when condensed - smooth dissolve, fade out immediately */
@@ -148,14 +131,14 @@
   opacity: 0;
   transform: translateX(-50%) scale(0.95);
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 /* When expanding, delay fade-in until after width expands */
 .header__inner:not(.header__inner--condensed) .header__nav {
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
 
 .header__nav-list {
@@ -187,6 +170,19 @@
   color: #ffffff;
 }
 
+/* When past 97% of hero, change navigation text color */
+.header__inner--past-hero .header__nav-item a {
+  color: #000000;
+}
+
+.header__inner--past-hero .header__nav-item a:hover {
+  color: #000000;
+}
+
+.header__inner--past-hero .header__nav-item a.active {
+  color: #000000;
+}
+
 /* ─────────────────────────────────────────
    ACTIONS - Far right, Donate CTA dominant
    ───────────────────────────────────────── */
@@ -195,36 +191,31 @@
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header__sign-in-btn {
   opacity: 1;
-  max-width: 100px;
-  overflow: hidden;
+  visibility: visible;
   /* When condensing: fade out immediately */
   /* When expanding: delay fade-in to happen after width expands */
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              margin 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              visibility 0s linear 0s;
 }
 
 /* Hide sign-in button when condensed - smooth dissolve, fade out immediately */
 .header__inner--condensed .header__sign-in-btn {
   opacity: 0;
-  max-width: 0;
-  margin: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              margin 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              visibility 0s linear 0.25s;
 }
 
 /* When expanding, delay fade-in until after width expands */
 .header__inner:not(.header__inner--condensed) .header__sign-in-btn {
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s,
-              margin 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+              visibility 0s linear 0.3s;
 }
 
 .header__donate-btn {
@@ -248,6 +239,19 @@
   background-color: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;
+}
+
+/* When past 97% of hero, change button text colors */
+.header__inner--past-hero .header__actions .button--secondary {
+  background-color: rgba(247, 247, 241, 0.15);
+  border-color: rgba(247, 247, 241, 0.3);
+  color: #000000;
+}
+
+.header__inner--past-hero .header__actions .button--secondary:hover:not(:disabled) {
+  background-color: rgba(247, 247, 241, 0.25);
+  border-color: rgba(247, 247, 241, 0.4);
+  color: #000000;
 }
 
 .header__actions .button--donate {

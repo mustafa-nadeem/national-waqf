@@ -4,37 +4,53 @@
 
 .home-hero {
   min-height: 100vh;
+  height: 100vh;
   padding-bottom: var(--space-20);
   padding-top: calc(12px + 64px + 12px + var(--space-8));
-  background-color: var(--color-primary);
+  background-image: url('../../../assets/pages/image copy.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
   margin-top: calc(-1 * (12px + 64px + 12px));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* Position hero content roughly in the upper quarter instead of dead centre */
+  justify-content: flex-start;
 }
 
-/* Subtle pattern accent - max 2-4 lines */
+/* Align hero container with navbar horizontal spacing */
+.home-hero .container {
+  /* Full-bleed inside its parent layout with generous side gutters */
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+/* Subtle black gradient at the very top of the hero */
 .home-hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 100%;
-  background-image: 
-    linear-gradient(135deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(225deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.35) 10%,
+    rgba(0, 0, 0, 0.1) 25%,
+    transparent 45%
+  );
   pointer-events: none;
+  z-index: 0;
 }
 
 .home-hero__layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-12);
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
   position: relative;
   z-index: 1;
 }
@@ -70,6 +86,121 @@
 .home-hero__title em {
   font-style: italic;
   color: var(--color-accent-orange);
+}
+
+/* Glass hero panel on the left */
+.home-hero__panel {
+  /* Stretch the hero panel to take the full width of the container */
+  width: 100%;
+
+  /* Solid white card instead of liquid glass */
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-md);
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.home-hero__panel-inner {
+  padding: var(--space-10) var(--space-10) var(--space-8);
+}
+
+.home-hero__eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  margin: 0 0 var(--space-4);
+}
+
+.home-hero__heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-medium);
+  line-height: 1.15;
+  color: #111827;
+  margin: 0 0 var(--space-5);
+}
+
+.home-hero__heading span {
+  font-style: italic;
+}
+
+.home-hero__copy {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: #4B5563;
+  margin: 0 0 var(--space-8);
+}
+
+.home-hero__panel .button--donate {
+  min-width: 200px;
+}
+
+/* Inline donate selector card inside hero panel */
+.home-hero__donate-card {
+  margin-top: var(--space-6);
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 999px;
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-md);
+  /* Tighter padding to reduce overall height */
+  padding: var(--space-3) var(--space-3);
+}
+
+/* Horizontal quick-donate bar */
+.home-hero__donate-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+
+.home-hero__pill {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background-color: #f7f7f1;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast),
+    box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.home-hero__pill:hover {
+  background-color: #ffffff;
+  border-color: var(--color-accent-teal);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.home-hero__pill-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.home-hero__pill-value {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+}
+
+.home-hero__donate-cta {
+  flex-shrink: 0;
+  border-radius: 999px;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+  white-space: nowrap;
 }
 
 .home-hero__description {
@@ -129,5 +260,62 @@
 
   .home-hero__actions {
     justify-content: flex-start;
+  }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE LAYOUT FOR DONATION CARD
+   ───────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  /* Let the hero container breathe on tablets and down */
+  .home-hero .container {
+    margin-left: var(--space-6);
+    margin-right: var(--space-6);
+  }
+
+  .home-hero__panel-inner {
+    padding: var(--space-8) var(--space-6) var(--space-6);
+  }
+
+  .home-hero__donate-card {
+    margin-top: var(--space-5);
+  }
+
+  .home-hero__donate-row {
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Edge-to-edge feel on small screens */
+  .home-hero .container {
+    margin-left: var(--space-4);
+    margin-right: var(--space-4);
+  }
+
+  .home-hero__panel {
+    border-radius: 24px;
+  }
+
+  .home-hero__panel-inner {
+    padding: var(--space-6) var(--space-4) var(--space-5);
+  }
+
+  .home-hero__heading {
+    font-size: var(--text-3xl);
+  }
+
+  .home-hero__copy {
+    font-size: var(--text-base);
+  }
+
+  /* Stack quick-donate bar vertically on small screens */
+  .home-hero__donate-row {
+    flex-direction: column;
+  }
+
+  .home-hero__donate-cta {
+    width: 100%;
   }
 }

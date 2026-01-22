@@ -1,0 +1,267 @@
+/* ===========================================
+   WHY WAQF PANELS - VUCKO-STYLE CHAPTER EXPERIENCE
+   =========================================== */
+
+/* ─────────────────────────────────────────
+   STATIC HEADER - Normal document flow
+   ───────────────────────────────────────── */
+.why-waqf-header {
+  background-color: #FFFFFF;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.why-waqf-header__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: clamp(24px, 6vw, 80px);
+  padding-right: clamp(24px, 6vw, 80px);
+}
+
+.why-waqf-header__title {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-text, #1a1a2e);
+  margin: 0;
+}
+
+/* Stage - Pinned container for panel transitions */
+.why-waqf-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Panel Stack - Contains all panels */
+.why-waqf-panel-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Individual Panel - Full viewport, absolutely positioned */
+.why-waqf-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  will-change: transform;
+  padding-top: calc(var(--navbar-height, 80px) + 40px);
+}
+
+/* Darkening overlay for overlapped panels */
+.why-waqf-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0)
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Show darkening overlay when panel is overlapped */
+.why-waqf-panel[data-overlapped='true']::before {
+  opacity: 1;
+}
+
+/* Panel Container - Max width with side padding */
+.why-waqf-panel__container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 96px);
+  display: grid;
+  grid-template-columns: 32% 68%;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: flex-start;
+}
+
+/* =====================
+   Left Column - Number
+   ===================== */
+.why-waqf-panel__number-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: clamp(0px, 2vw, 24px);
+}
+
+.why-waqf-panel__number {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(105px, 13.5vw, 270px);
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+/* =====================
+   Right Column - Content
+   ===================== */
+.why-waqf-panel__content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: clamp(0px, 4vw, 48px);
+}
+
+/* Section Title - Only on Chapter 1 */
+.why-waqf-panel__section-title {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 clamp(24px, 3vw, 40px) 0;
+}
+
+/* Headline */
+.why-waqf-panel__headline {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(28px, 3.6vw, 56px);
+  font-weight: 650;
+  color: var(--color-text, #1a1a2e);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 900px;
+}
+
+/* Image Wrapper - Centered within content column */
+.why-waqf-panel__image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+/* Image Placeholder - Reduced size */
+.why-waqf-panel__image-placeholder {
+  width: clamp(260px, 28vw, 420px);
+  aspect-ratio: 4 / 3;
+  background-color: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-waqf-panel__image-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Paragraph - Compact */
+.why-waqf-panel__paragraph {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(16px, 1.6vw, 17px);
+  font-weight: var(--font-light, 300);
+  line-height: 1.6;
+  color: var(--color-text-muted, #6b6b7b);
+  margin: clamp(18px, 2.5vw, 28px) 0 0 0;
+  max-width: 640px;
+}
+
+/* =====================
+   Responsive - Mobile
+   ===================== */
+@media (max-width: 767px) {
+  .why-waqf-spacer {
+    display: none;
+  }
+
+  .why-waqf-stage {
+    height: auto;
+    overflow: visible;
+  }
+
+  .why-waqf-panel-stack {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .why-waqf-panel {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    transform: none !important;
+    padding: 96px 0 clamp(48px, 8vw, 80px);
+    align-items: flex-start;
+  }
+
+  .why-waqf-panel__container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 4vw, 24px);
+    padding: 0 clamp(20px, 5vw, 32px);
+  }
+
+  .why-waqf-panel__number-col {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+
+  .why-waqf-panel__number {
+    font-size: clamp(80px, 20vw, 140px);
+  }
+
+  .why-waqf-panel__content-col {
+    padding-right: 0;
+  }
+
+  .why-waqf-panel__section-title {
+    font-size: clamp(32px, 8vw, 48px);
+    margin-bottom: clamp(16px, 4vw, 24px);
+  }
+
+  .why-waqf-panel__headline {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+
+  .why-waqf-panel__image-wrapper {
+    margin-top: clamp(20px, 4vw, 32px);
+  }
+
+  .why-waqf-panel__image-placeholder {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .why-waqf-panel__paragraph {
+    font-size: 16px;
+    margin-top: clamp(16px, 4vw, 24px);
+  }
+}
+
+/* =====================
+   Reduced Motion
+   ===================== */
+@media (prefers-reduced-motion: reduce) {
+  .why-waqf-panel {
+    transition: none;
+  }
+}

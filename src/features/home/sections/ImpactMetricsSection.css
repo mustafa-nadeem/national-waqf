@@ -1,38 +1,162 @@
 /* ===========================================
-   IMPACT METRICS SECTION - DESIGN SYSTEM
-   Clean grid, some tiles larger than others
+   IMPACT METRICS SECTION - Editorial Layout
+   Typography-led, no tiles/cards
+   Asymmetric composition with strong whitespace
    =========================================== */
 
-.impact-metrics-section {
-  padding: var(--section-padding);
-  background-color: var(--color-background);
+.impact-metrics-editorial {
+  background-color: var(--color-background, #f8f9fa);
+  padding: clamp(80px, 12vw, 160px) 0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-.impact-metrics-section__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
+.impact-metrics-editorial__container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  position: relative;
+  min-height: clamp(600px, 70vh, 900px);
 }
 
-/* Make first and last tiles span full width on mobile */
-.impact-metrics-section__grid > :first-child,
-.impact-metrics-section__grid > :last-child {
-  grid-column: span 2;
+/* ─────────────────────────────────────────
+   SECTION TITLE
+   ───────────────────────────────────────── */
+.impact-metrics-editorial__title {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0 0 clamp(32px, 6vw, 56px) 0;
+  padding: 0;
 }
 
-@media (min-width: 768px) {
-  .impact-metrics-section__grid {
-    grid-template-columns: repeat(3, 1fr);
+/* ─────────────────────────────────────────
+   BLOCK POSITIONING - Diagonal Layout
+   Top-left → Middle → Bottom-right
+   ───────────────────────────────────────── */
+
+.impact-metrics-editorial__block {
+  position: absolute;
+}
+
+/* Top-left - "4422 Supporters" */
+.impact-metrics-editorial__block--top-left {
+  top: 0;
+  left: 0;
+  max-width: 50%;
+}
+
+/* Middle - "£645k+" - centered diagonally */
+.impact-metrics-editorial__block--middle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.impact-metrics-editorial__block--middle .impact-stat-block {
+  /* Override the default translateY animation to avoid conflict */
+  transform: none;
+}
+
+.impact-metrics-editorial__block--middle .impact-stat-block--visible {
+  transform: none;
+}
+
+.impact-metrics-editorial__block--middle .impact-stat-block__label {
+  text-align: center;
+}
+
+.impact-metrics-editorial__block--middle .impact-stat-block__value {
+  justify-content: center;
+}
+
+/* Bottom-right - "9 Organisations" */
+.impact-metrics-editorial__block--bottom-right {
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  max-width: 50%;
+}
+
+.impact-metrics-editorial__block--bottom-right .impact-stat-block__value {
+  justify-content: flex-end;
+}
+
+.impact-metrics-editorial__block--bottom-right .impact-stat-block__label {
+  text-align: right;
+}
+
+/* ─────────────────────────────────────────
+   TABLET - Adjusted positions
+   ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .impact-metrics-editorial__container {
+    min-height: clamp(550px, 65vh, 750px);
   }
 
-  .impact-metrics-section__grid > :first-child,
-  .impact-metrics-section__grid > :last-child {
-    grid-column: span 1;
+  .impact-metrics-editorial__block--top-left {
+    max-width: 60%;
+  }
+
+  .impact-metrics-editorial__block--bottom-right {
+    max-width: 55%;
   }
 }
 
-@media (min-width: 1024px) {
-  .impact-metrics-section__grid {
-    grid-template-columns: repeat(6, 1fr);
+/* ─────────────────────────────────────────
+   MOBILE - Stacked vertical layout
+   ───────────────────────────────────────── */
+@media (max-width: 767px) {
+  .impact-metrics-editorial {
+    padding: clamp(60px, 10vw, 100px) 0;
+  }
+
+  .impact-metrics-editorial__container {
+    position: relative;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(60px, 12vw, 100px);
+  }
+
+  .impact-metrics-editorial__block {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    max-width: 100%;
+  }
+
+  .impact-metrics-editorial__block--middle .impact-stat-block__label,
+  .impact-metrics-editorial__block--middle .impact-stat-block__value {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .impact-metrics-editorial__block--bottom-right {
+    text-align: left;
+  }
+
+  .impact-metrics-editorial__block--bottom-right .impact-stat-block__value {
+    justify-content: flex-start;
+  }
+
+  .impact-metrics-editorial__block--bottom-right .impact-stat-block__label {
+    text-align: left;
+  }
+
+  /* Uniform value sizes for mobile */
+  .impact-metrics-editorial__block .impact-stat-block__value {
+    font-size: clamp(56px, 18vw, 100px);
   }
 }

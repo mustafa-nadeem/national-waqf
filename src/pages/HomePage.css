@@ -1,4 +1,8 @@
 .home-page {
   display: flex;
   flex-direction: column;
+  /* Ensure enough scroll room for pinned sections */
+  min-height: 100vh;
 }
+
+

@@ -30,7 +30,10 @@ export default function WhatIsWaqfSection() {
   const sectionRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visibleSteps, setVisibleSteps] = useState([]);
+  const [lineFillProgress, setLineFillProgress] = useState(0);
   const stepRefs = useRef([]);
+
+  const timelineRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,13 +43,38 @@ export default function WhatIsWaqfSection() {
       const sectionTop = section.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
 
-      // Calculate progress: animation completes when 90% past the hero section
-      // Animation starts when section enters viewport, completes at 10% into section
+      // Calculate progress for title: animation completes when 90% past the hero section
       const scrollStart = windowHeight;
-      const scrollEnd = windowHeight * 0.1; // Complete at 90% past hero (10% into viewport)
+      const scrollEnd = windowHeight * 0.1;
       const progress = Math.max(0, Math.min(1, (scrollStart - sectionTop) / (scrollStart - scrollEnd)));
-
       setScrollProgress(progress);
+
+      // Calculate timeline scroll progress - lines fill sequentially, each 0-100%
+      if (timelineRef.current) {
+        const timeline = timelineRef.current;
+        const timelineTop = timeline.getBoundingClientRect().top;
+        
+        // Map scroll position to timeline fill progress (0 to 1)
+        const timelineVisibleStart = windowHeight * 0.8;
+        const timelineVisibleEnd = windowHeight * 0.2;
+        
+        let overallProgress = (timelineVisibleStart - timelineTop) / (timelineVisibleStart - timelineVisibleEnd);
+        overallProgress = Math.max(0, Math.min(1, overallProgress));
+        
+        // Scale overall progress to accommodate all lines
+        // If we have 2 lines, scale by 2 so each line gets 0-100%
+        const numLines = TIMELINE_STEPS.length - 1;
+        const scaledProgress = overallProgress * numLines;
+        
+        // Current line (0, 1, 2, etc) and its fill progress (0-1)
+        const currentLineIndex = Math.floor(scaledProgress);
+        const currentLineFill = scaledProgress - currentLineIndex;
+        
+        setLineFillProgress(currentLineFill);
+        
+        // Store which line we're currently on
+        stepRefs.current.lineIndex = currentLineIndex;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -54,41 +82,22 @@ export default function WhatIsWaqfSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Timeline step visibility observers
+  // Stagger step visibility based on line completion
   useEffect(() => {
-    const observers = [];
-    const options = {
-      root: null,
-      rootMargin: '-5% 0px -15% 0px',
-      threshold: 0.2,
-    };
-
-    stepRefs.current.forEach((ref, index) => {
-      if (ref) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setVisibleSteps((prev) => {
-                if (!prev.includes(index)) {
-                  return [...prev, index];
-                }
-                return prev;
-              });
-            } else {
-              setVisibleSteps((prev) => prev.filter((i) => i !== index));
-            }
-          });
-        }, options);
-
-        observer.observe(ref);
-        observers.push(observer);
+    const newVisibleSteps = [0]; // Step 0 always visible
+    
+    const numLines = TIMELINE_STEPS.length - 1;
+    const overallProgress = (stepRefs.current.lineIndex !== undefined ? stepRefs.current.lineIndex : 0) + lineFillProgress;
+    
+    for (let i = 1; i < TIMELINE_STEPS.length; i++) {
+      // Step i appears when line i-1 is complete (progress >= i)
+      if (overallProgress >= i) {
+        newVisibleSteps.push(i);
       }
-    });
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
-  }, []);
+    }
+    
+    setVisibleSteps(newVisibleSteps);
+  }, [lineFillProgress]);
 
   // Initial positions (spread across entire page height, then compress to center)
   const whatStart = { x: -40, y: 0 }; // middle-left (closer to center)
@@ -158,8 +167,15 @@ export default function WhatIsWaqfSection() {
         </div>
 
         {/* Timeline Section */}
-        <div className="what-is-waqf__timeline">
-          <div className="what-is-waqf__timeline-rail">
+        <div className="what-is-waqf__timeline" ref={timelineRef}>
+          <div 
+            className="what-is-waqf__timeline-rail"
+            style={{
+              '--line-fill-progress': `${lineFillProgress * 100}%`,
+              '--filled-lines': stepRefs.current.lineIndex || 0,
+              '--num-lines': TIMELINE_STEPS.length - 1,
+            }}
+          >
             {TIMELINE_STEPS.map((step, index) => (
               <div
                 key={step.id}
@@ -176,7 +192,19 @@ export default function WhatIsWaqfSection() {
                     }`}
                   />
                   {index < TIMELINE_STEPS.length - 1 && (
-                    <div className="what-is-waqf__line" />
+                    <div 
+                      className="what-is-waqf__line"
+                      style={{
+                        '--line-index': index,
+                        '--current-line-index': stepRefs.current.lineIndex || 0,
+                        '--current-line-fill': `${lineFillProgress * 100}%`,
+                        '--is-filled': (stepRefs.current.lineIndex || 0) > index 
+                          ? '100%' 
+                          : (stepRefs.current.lineIndex || 0) === index 
+                            ? `${lineFillProgress * 100}%`
+                            : '0%',
+                      }}
+                    />
                   )}
                 </div>
 

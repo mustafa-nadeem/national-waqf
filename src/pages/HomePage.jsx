@@ -1,6 +1,6 @@
 import HomeHero from '../features/home/sections/HomeHero';
 import WhatIsWaqfSection from '../features/home/sections/WhatIsWaqfSection';
-import WhyWaqfSection from '../features/home/sections/WhyWaqfSection';
+import WhyWaqfPanels from '../features/home/sections/WhyWaqfPanels';
 import ImpactMetricsSection from '../features/home/sections/ImpactMetricsSection';
 import './HomePage.css';
 
@@ -9,7 +9,7 @@ export default function HomePage() {
     <div className="home-page">
       <HomeHero />
       <WhatIsWaqfSection />
-      <WhyWaqfSection />
+      <WhyWaqfPanels />
       <ImpactMetricsSection />
     </div>
   );

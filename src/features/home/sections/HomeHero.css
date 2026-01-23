@@ -90,6 +90,9 @@
 
 /* Glass hero panel on the left */
 .home-hero__panel {
+  /* Hidden - keeping hero background visible */
+  display: none;
+  
   /* Stretch the hero panel to take the full width of the container */
   width: 100%;
 
@@ -141,6 +144,7 @@
 
 /* Inline donate selector card inside hero panel */
 .home-hero__donate-card {
+  display: none; /* Hidden per user request */
   margin-top: var(--space-6);
   background-color: rgba(255, 255, 255, 0.96);
   border-radius: 999px;

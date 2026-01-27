@@ -1,0 +1,120 @@
+.inspo-hero {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inspo-hero__container {
+  width: 100vw;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vh, 4rem) 1.5rem;
+  box-sizing: border-box;
+  gap: clamp(1.25rem, 2.5vh, 2rem);
+}
+
+.inspo-hero__headline-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.inspo-hero__headline {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #0B0B0B;
+  text-align: center;
+  max-width: 900px;
+  margin: 0;
+}
+
+.inspo-hero__headline-bold {
+  font-weight: 800;
+}
+.inspo-hero__headline-regular {
+  font-weight: 500;
+}
+
+.inspo-hero__brand-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.inspo-hero__logo {
+  height: 24px;
+  width: auto;
+  display: inline-block;
+}
+
+.inspo-hero__brandtext {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #111;
+}
+
+.inspo-hero__large-logo-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.inspo-hero__logo-large {
+  width: min(420px, 60vw);
+  height: auto;
+  max-height: 260px;
+  display: block;
+}
+
+.inspo-hero__paragraph-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(0.75rem, 1.8vh, 1.25rem);
+}
+
+.inspo-hero__paragraph {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #525252;
+  text-align: center;
+  max-width: 700px;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .inspo-hero__paragraph {
+    max-width: 92vw;
+  }
+  .inspo-hero__logo-large {
+    width: min(320px, 80vw);
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inspo-hero__logo {
+    height: 22px;
+  }
+  .inspo-hero__logo-large {
+    width: min(220px, 90vw);
+    max-height: 120px;
+  }
+}

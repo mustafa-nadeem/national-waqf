@@ -1,6 +1,6 @@
 import ProjectsMapSection from '../features/impact/sections/ProjectsMapSection';
 import EligibilityCTASection from '../features/impact/sections/EligibilityCTASection';
-import FundedProjectsShowcase from '../features/impact/sections/FundedProjectsShowcase';
+import FundedProjectsAlt from '../features/impact/sections/FundedProjectsAlt';
 import SupportedLogosStrip from '../features/impact/sections/SupportedLogosStrip';
 import ImpactMetricsGrid from '../features/impact/sections/ImpactMetricsGrid';
 import GrantGivingSection from '../features/impact/sections/GrantGivingSection';
@@ -12,7 +12,7 @@ export default function ImpactPage() {
     <div className="impact-page">
       <ProjectsMapSection />
       <EligibilityCTASection />
-      <FundedProjectsShowcase />
+      <FundedProjectsAlt />
       <SupportedLogosStrip />
       <ImpactMetricsGrid />
       <GrantGivingSection />

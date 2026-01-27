@@ -1,0 +1,206 @@
+.funded-alt {
+  width: 100%;
+  background: #fff;
+}
+
+.funded-alt__header {
+  text-align: center;
+  padding: 100px 24px 80px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.funded-alt__subtitle {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #10b981;
+  margin-bottom: 16px;
+}
+
+.funded-alt__title {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+  line-height: 1.15;
+  margin: 0 0 20px 0;
+}
+
+.funded-alt__desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-muted, #6b6b7b);
+  margin: 0;
+}
+
+.funded-alt__projects {
+  display: flex;
+  flex-direction: column;
+}
+
+.funded-alt__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  align-items: center;
+}
+
+.funded-alt__row--left {
+  grid-template-areas: "image content";
+}
+
+.funded-alt__row--right {
+  grid-template-areas: "content image";
+}
+
+.funded-alt__image-col {
+  grid-area: image;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.funded-alt__row--left .funded-alt__image-col {
+  justify-content: flex-start;
+  padding-left: clamp(40px, 8vw, 120px);
+}
+
+.funded-alt__row--right .funded-alt__image-col {
+  justify-content: flex-end;
+  padding-right: clamp(40px, 8vw, 120px);
+}
+
+.funded-alt__image-wrapper {
+  width: 100%;
+  max-width: 560px;
+}
+
+.funded-alt__image-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #f5f0e6 0%, #ebe5d8 100%);
+  border-radius: 16px;
+}
+
+.funded-alt__row:nth-child(2) .funded-alt__image-placeholder {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.funded-alt__row:nth-child(3) .funded-alt__image-placeholder {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.funded-alt__row:nth-child(4) .funded-alt__image-placeholder {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.funded-alt__content-col {
+  grid-area: content;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+}
+
+.funded-alt__row--left .funded-alt__content-col {
+  justify-content: flex-start;
+  padding-left: clamp(40px, 6vw, 80px);
+  padding-right: clamp(40px, 8vw, 120px);
+}
+
+.funded-alt__row--right .funded-alt__content-col {
+  justify-content: flex-end;
+  padding-right: clamp(40px, 6vw, 80px);
+  padding-left: clamp(40px, 8vw, 120px);
+}
+
+.funded-alt__content {
+  max-width: 480px;
+}
+
+.funded-alt__project-title {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+}
+
+.funded-alt__project-desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-muted, #6b6b7b);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .funded-alt__row {
+    min-height: 70vh;
+  }
+
+  .funded-alt__image-wrapper {
+    max-width: 450px;
+  }
+
+  .funded-alt__content {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .funded-alt__header {
+    padding: 60px 20px 40px;
+  }
+
+  .funded-alt__row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "content";
+    min-height: auto;
+    gap: 0;
+  }
+
+  .funded-alt__row--right {
+    grid-template-areas:
+      "image"
+      "content";
+  }
+
+  .funded-alt__image-col {
+    padding: 40px 20px 20px;
+    justify-content: center !important;
+  }
+
+  .funded-alt__content-col {
+    padding: 20px 20px 60px;
+    justify-content: center !important;
+  }
+
+  .funded-alt__image-wrapper {
+    max-width: 100%;
+  }
+
+  .funded-alt__content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .funded-alt__project-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .funded-alt__project-desc {
+    font-size: 1rem;
+  }
+}

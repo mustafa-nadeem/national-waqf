@@ -1,293 +1,317 @@
 /* ===========================================
-   WHAT IS WAQF SECTION - DIAGONAL TO HORIZONTAL ALIGNMENT
+   WHAT IS WAQF SECTION - STICKY LEFT, SCROLLING RIGHT
+   Left: Sticky Title, Description, CTA
+   Right: Scrollable Cards that change on scroll
    =========================================== */
 
 .what-is-waqf {
-  padding: var(--section-padding);
-  padding-top: 120px;
-  padding-bottom: var(--space-20, 120px);
+  padding: 120px 80px var(--space-20, 120px) 80px;
   background-color: var(--color-background);
   position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  width: 100%;
 }
 
-.what-is-waqf__hero {
-  width: 100%;
-  height: 350px;
+.what-is-waqf__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-16, 64px);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .what-is-waqf__layout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+  }
+}
+
+/* ─────────────────────────────────────────
+   LEFT SIDE - Sticky Title, Description, CTA
+   ───────────────────────────────────────── */
+.what-is-waqf__left {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
   position: relative;
-  margin-bottom: 80px;
+}
+
+@media (min-width: 1024px) {
+  .what-is-waqf__left {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    height: fit-content;
+  }
 }
 
 .what-is-waqf__title {
-  font-size: 4rem;
   font-family: var(--font-heading);
-  font-weight: var(--font-medium, 500);
-  color: var(--color-text);
-  line-height: 1.1;
-  margin: 0;
-  text-align: center;
-  letter-spacing: -0.02em;
-  /* Each word positioned independently for multi-axis movement */
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  white-space: nowrap;
-}
-
-/* Individual word - multi-axis animation (X and Y) */
-.what-is-waqf__title-part {
-  display: inline-block;
-  position: relative;
-  will-change: transform;
-  /* Smooth interpolation during scroll */
-  transition: transform 0.5s linear;
-  margin: 0 -0.05em;
-}
-@media (max-width: 767px) {
-  .what-is-waqf__hero {
-    height: 400px;
-    margin-bottom: 48px;
-  }
-
-  .what-is-waqf__title {
-    font-size: 2.2rem;
-    gap: 0.2em;
-  }
-
-  .what-is-waqf__title-part {
-    margin: 0 0.1em;
-  }
-}
-
-/* Tablet */
-@media (min-width: 768px) {
-  .what-is-waqf__hero {
-    height: 325px;
-    margin-bottom: 64px;
-  }
-
-  .what-is-waqf__title {
-    font-size: 6rem;
-    gap: -0.05em;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1024px) {
-  .what-is-waqf__hero {
-    height: 300px;
-    margin-bottom: 80px;
-  }
-
-  .what-is-waqf__title {
-    font-size: 9rem;
-  }
-}
-
-/* Premium smooth easing for scroll-linked motion */
-@supports (scroll-behavior: smooth) {
-  .what-is-waqf__title-part {
-    transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-}
-
-/* ===========================================
-   TIMELINE - Inline within What is Waqf
-   =========================================== */
-
-.what-is-waqf__timeline {
-  padding-top: var(--space-8, 40px);
-  position: relative;
-}
-
-.what-is-waqf__timeline-rail {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-left: 60px;
-}
-
-/* Timeline Step */
-.what-is-waqf__step {
-  position: relative;
-  padding-bottom: var(--space-12, 60px);
-}
-
-/* Timeline Dot & Line */
-.what-is-waqf__dot-container {
-  position: absolute;
-  left: -60px;
-  top: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.what-is-waqf__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--color-border, #d1d1d1);
-  border: 2px solid var(--color-background, #f8f8f6);
-  transition: all 0.4s ease;
-  z-index: 2;
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-
-.what-is-waqf__dot--active {
-  background-color: var(--color-text, #1a1a2e);
-  transform: scale(1.1);
-}
-
-.what-is-waqf__line {
-  width: 1.5px;
-  flex: 1;
-  margin-top: 6px;
-  margin-bottom: 0;
-  z-index: 1;
-  transition: background 0.15s ease;
-  background: linear-gradient(
-    to bottom,
-    #2B346C 0%,
-    #2B346C var(--is-filled, 0%),
-    #e0e0e0 var(--is-filled, 0%),
-    #e0e0e0 100%
-  );
-}
-
-/* Line 0: Show current fill when it's the active line, 100% when done */
-.what-is-waqf__step:nth-child(1) .what-is-waqf__line {
-  background: linear-gradient(
-    to bottom,
-    #2B346C 0%,
-    #2B346C var(--is-filled, 0),
-    #e0e0e0 var(--is-filled, 0),
-    #e0e0e0 100%
-  );
-}
-
-/* Line 1: Show 0% until first line is done, then fill from 0-100%, then stay filled */
-.what-is-waqf__step:nth-child(2) .what-is-waqf__line {
-  background: linear-gradient(
-    to bottom,
-    #2B346C 0%,
-    #2B346C var(--is-filled, 0%),
-    #e0e0e0 var(--is-filled, 0%),
-    #e0e0e0 100%
-  );
-}
-
-/* Step Row (Content + Image) */
-.what-is-waqf__step-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6, 24px);
-  align-items: start;
-  margin-top: -2px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.what-is-waqf__step--visible .what-is-waqf__step-row {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (min-width: 768px) {
-  .what-is-waqf__step-row {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-10, 48px);
-  }
-}
-
-/* Step Content */
-.what-is-waqf__step-content {
-  padding-right: var(--space-4, 16px);
-}
-
-.what-is-waqf__step-title {
-  font-family: var(--font-heading, 'Inter', sans-serif);
-  font-size: 1.35rem;
+  font-size: 3rem;
   font-weight: var(--font-semibold, 600);
-  color: var(--color-text, #1a1a2e);
-  margin: 0 0 var(--space-2, 8px) 0;
-  line-height: 1;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 
-.what-is-waqf__step-description {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 1rem;
+.what-is-waqf__description {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
   font-weight: var(--font-light, 300);
   line-height: 1.7;
-  color: var(--color-text-muted, #6b6b7b);
+  color: var(--color-text);
   margin: 0;
-  max-width: 380px;
+  max-width: 500px;
 }
 
-/* Step Image */
-.what-is-waqf__step-image {
+.what-is-waqf__cta {
+  align-self: flex-start;
+  margin-top: var(--space-2, 8px);
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+.what-is-waqf__cta:hover:not(:disabled) {
+  background-color: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────
+   RIGHT SIDE - Scrollable Cards
+   ───────────────────────────────────────── */
+.what-is-waqf__right {
+  position: relative;
+}
+
+.what-is-waqf__card {
+  position: relative;
+  background-color: var(--color-surface, #ffffff);
+  border-radius: var(--radius-lg, 16px);
+  padding: var(--space-6, 24px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-8, 32px);
+}
+
+@media (min-width: 1024px) {
+  .what-is-waqf__card {
+    height: auto;
+    max-height: 460px;
+    margin-bottom: var(--space-12, 48px);
+  }
+}
+
+.what-is-waqf__card-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8, 32px);
+  height: 100%;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .what-is-waqf__card-content {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12, 48px);
+  }
+}
+
+.what-is-waqf__card--active {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.what-is-waqf__card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Header with Number Badge */
+.what-is-waqf__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.what-is-waqf__card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-primary, #2b346c);
+  color: #ffffff;
+  border-radius: var(--radius-md, 8px);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: var(--font-semibold, 600);
+  flex-shrink: 0;
+}
+
+.what-is-waqf__card-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: var(--font-semibold, 600);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.what-is-waqf__card-description {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--font-light, 300);
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0 0 var(--space-4, 16px) 0;
+}
+
+.what-is-waqf__card-cta {
+  margin-top: var(--space-4, 16px);
+}
+
+/* Card Left Side */
+.what-is-waqf__card-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card Right Side */
+.what-is-waqf__card-right {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.what-is-waqf__step-image img {
+/* Card Chart Section */
+.what-is-waqf__card-chart {
   width: 100%;
-  max-width: 196px;
-  height: auto;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Mobile Timeline Adjustments */
+.what-is-waqf__chart-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.what-is-waqf__chart-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: var(--font-semibold, 600);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.what-is-waqf__chart-subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: var(--font-regular, 400);
+  color: var(--color-text-muted, #6b7280);
+}
+
+.what-is-waqf__chart-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: var(--color-background, #f8f9fa);
+  border-radius: var(--radius-md, 8px);
+  border: 2px dashed var(--color-border, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.what-is-waqf__chart-placeholder::before {
+  content: 'Image Placeholder';
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-muted, #9ca3af);
+}
+
+@media (min-width: 1024px) {
+  .what-is-waqf__chart-placeholder {
+    height: 280px;
+  }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────── */
 @media (max-width: 767px) {
-  .what-is-waqf__timeline {
-    padding-top: var(--space-6, 24px);
+  .what-is-waqf {
+    min-height: auto;
+    padding: 80px var(--container-padding, 24px) var(--space-12, 48px) var(--container-padding, 24px);
   }
 
-  .what-is-waqf__timeline-rail {
-    padding-left: 40px;
+  .what-is-waqf__title {
+    font-size: 2rem;
   }
 
-  .what-is-waqf__dot-container {
-    left: -40px;
+  .what-is-waqf__description {
+    font-size: 1rem;
   }
 
-  .what-is-waqf__step {
-    padding-bottom: var(--space-10, 48px);
+  .what-is-waqf__right {
+    min-height: auto;
   }
 
-  .what-is-waqf__step-title {
-    font-size: 1.15rem;
+  .what-is-waqf__card {
+    position: relative;
+    top: 0;
+    margin-bottom: var(--space-6, 24px);
+    height: auto;
   }
 
-  .what-is-waqf__step-description {
-    font-size: 0.95rem;
+  .what-is-waqf__card {
+    padding: var(--space-4, 16px);
   }
 
-  .what-is-waqf__step-image img {
-    max-width: 140px;
+  .what-is-waqf__card-title {
+    font-size: 1.25rem;
   }
 
-  .what-is-waqf__dot {
-    width: 10px;
-    height: 10px;
+  .what-is-waqf__chart-placeholder {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .what-is-waqf {
+    padding: 100px var(--container-padding, 32px) var(--space-16, 64px) var(--container-padding, 32px);
+  }
+
+  .what-is-waqf__title {
+    font-size: 2.5rem;
+  }
+
+  .what-is-waqf__layout {
+    gap: var(--space-12, 48px);
+  }
+
+  .what-is-waqf__card {
+    position: relative;
+    top: 0;
+    min-height: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .what-is-waqf__title {
+    font-size: 3.5rem;
   }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .what-is-waqf__step-row {
-    transition: none;
-  }
-  
-  .what-is-waqf__dot {
+  .what-is-waqf__card {
     transition: none;
   }
 }

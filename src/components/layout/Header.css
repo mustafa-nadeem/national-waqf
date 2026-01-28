@@ -11,7 +11,7 @@
   z-index: 100;
   background-color: transparent;
   border-bottom: none;
-  padding: 12px 0;
+  padding: 0;
 }
 
 .header__inner {
@@ -19,48 +19,19 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 0 32px;
-  
-  /* Liquid Glass Effect */
-  --figma-blur: 25.5px;
-  --figma-brightness: 1.04;
-  --figma-contrast: 1.075;
-  --figma-bg: rgba(255, 255, 255, 0.1);
-  --figma-border: 1px solid rgba(255, 255, 255, 0.1);
-  --figma-shadow: 0 7.5px 30px rgba(0, 0, 0, 0.045), inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  --figma-border-radius: 50px;
-  
-  backdrop-filter: blur(var(--figma-blur)) brightness(var(--figma-brightness)) contrast(var(--figma-contrast));
-  background: var(--figma-bg);
-  border: var(--figma-border);
-  box-shadow: var(--figma-shadow);
-  border-radius: var(--figma-border-radius);
-  overflow: hidden;
-  position: relative;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: width;
-  contain: layout style paint;
-  isolation: isolate;
-  -webkit-font-smoothing: antialiased;
-  
-  /* Smooth transitions for width - default (expanding) */
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              padding 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  width: 100%;
+  margin: 0;
+  padding: 0 80px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─────────────────────────────────────────
-   CONDENSED STATE - Scrolling down
-   ───────────────────────────────────────── */
-.header__inner--condensed {
-  width: 500px;
-  padding: 0 24px;
-  /* When condensing: delay width to happen after fade-out */
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.25s,
-              padding 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+.header__inner--past-hero {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* ─────────────────────────────────────────
@@ -189,33 +160,30 @@
 .header__actions {
   display: none;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.header__sign-in-btn {
-  opacity: 1;
-  visibility: visible;
-  /* When condensing: fade out immediately */
-  /* When expanding: delay fade-in to happen after width expands */
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              visibility 0s linear 0s;
+/* Sign in text link */
+.header__sign-in-link {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hide sign-in button when condensed - smooth dissolve, fade out immediately */
-.header__inner--condensed .header__sign-in-btn {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              visibility 0s linear 0.25s;
+.header__sign-in-link:hover {
+  color: #ffffff;
 }
 
-/* When expanding, delay fade-in until after width expands */
-.header__inner:not(.header__inner--condensed) .header__sign-in-btn {
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
-              visibility 0s linear 0.3s;
+.header__inner--past-hero .header__sign-in-link {
+  color: #000000;
+}
+
+.header__inner--past-hero .header__sign-in-link:hover {
+  color: #000000;
 }
 
 .header__donate-btn {
@@ -229,29 +197,28 @@
   color: #ffffff;
 }
 
-.header__actions .button--secondary {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+.header__apply-btn {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.header__apply-btn:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 1);
   color: #ffffff;
 }
 
-.header__actions .button--secondary:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.4);
+.header__inner--past-hero .header__apply-btn {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.header__inner--past-hero .header__apply-btn:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
   color: #ffffff;
-}
-
-/* When past 97% of hero, change button text colors */
-.header__inner--past-hero .header__actions .button--secondary {
-  background-color: rgba(247, 247, 241, 0.15);
-  border-color: rgba(247, 247, 241, 0.3);
-  color: #000000;
-}
-
-.header__inner--past-hero .header__actions .button--secondary:hover:not(:disabled) {
-  background-color: rgba(247, 247, 241, 0.25);
-  border-color: rgba(247, 247, 241, 0.4);
-  color: #000000;
 }
 
 .header__actions .button--donate {
@@ -331,13 +298,8 @@
     margin: 0;
     border-radius: 0;
     padding: 0 var(--container-padding);
-    backdrop-filter: none;
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    box-shadow: none;
-  }
-
-  .header__inner--condensed {
-    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }

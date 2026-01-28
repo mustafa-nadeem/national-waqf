@@ -1,39 +1,70 @@
 import { useEffect, useRef, useState } from 'react';
-import Container from '../../../components/layout/Container';
-import image1 from '../../../assets/images/what-is-waqf/image1.svg';
-import image2 from '../../../assets/images/what-is-waqf/image2.svg';
-import image3 from '../../../assets/images/what-is-waqf/image3.svg';
+import Button from '../../../components/ui/Button';
 import './WhatIsWaqfSection.css';
 
-const TIMELINE_STEPS = [
+const WAQF_CARDS = [
   {
-    id: 'donate',
-    title: 'Donate',
-    description: 'Your generous donations are collected and pooled together.',
-    image: image1,
+    id: 'how-waqf-works',
+    number: '01',
+    title: 'How Waqf works',
+    description: 'Find drop-off points, analyze funnels, and improve onboarding experiences.',
+    ctaText: 'Learn More About Waqf',
+    chartTitle: 'Waqf Process',
+    chartSubtitle: '3-step Process • Last 3 months',
+    content: [
+      {
+        subtitle: 'A sustainable and permanent benefit to society:',
+        body: 'Waqf creates a permanent income stream or provides permanent benefit to a community. A donated building generates rent forever, farmland produces crops year after year, a well can provide water to a whole community. The infrastructure funds itself and the benefits can self perpetuate.',
+      },
+      {
+        subtitle: 'For the good of society:',
+        body: 'A Waqf cannot be sold or transferred as, once donated and put under trust, it has to remain as a Waqf forever. Trustees are entrusted to look after the Waqf for as long as it is in use.',
+      },
+    ],
   },
   {
-    id: 'invest',
-    title: 'Invest',
-    description: 'Our Investment Committee invests the donations into Shari\'ah compliant and income generating assets to preserve the principal of the donation and generate growth and income.',
-    image: image2,
+    id: 'benefits-of-waqf',
+    number: '02',
+    title: 'The benefits of Waqf',
+    description: 'Uncover the features and behaviors that keep users active and coming back.',
+    ctaText: 'Discover Benefits',
+    chartTitle: 'Waqf Impact',
+    chartSubtitle: 'Total, last 12 months',
+    content: [
+      {
+        subtitle: 'Rewards to the donor:',
+        body: 'The rewards to the donor count the same as Sadaqah Jariyah - an ongoing reward for as long as the donation is in use.',
+      },
+      {
+        subtitle: 'Wealth circulation:',
+        body: 'A Waqf redirects private wealth towards public good.',
+      },
+      {
+        subtitle: 'Independence:',
+        body: 'Communities can fund their own religious and social institutions through sustainable investment.',
+      },
+    ],
   },
   {
-    id: 'distribute',
-    title: 'Distribute and Grow',
-    description: 'The profits generated from these investments are given out as grants to help the community. It\'s a long-lasting way to make a difference.',
-    image: image3,
+    id: 'sustainable-infrastructure',
+    number: '03',
+    title: 'Building sustainable infrastructure',
+    description: 'Throughout Islamic history, Waqf has funded universities, hospitals, libraries, and more.',
+    ctaText: 'See Infrastructure Impact',
+    chartTitle: 'Infrastructure Growth',
+    chartSubtitle: 'Total, last 12 months',
+    content: [
+      {
+        subtitle: 'An Islamic way of building communities:',
+        body: 'Throughout Islamic history, Waqf has funded universities, hospitals, libraries, public fountains, wells, supported scholars as well as many other societal causes. Waqf creates lasting infrastructure that serves communities for generations. It is an endowment fund rooted in Islamic law and spirituality - designed to build communities and benefit them forever.',
+      },
+    ],
   },
 ];
 
 export default function WhatIsWaqfSection() {
   const sectionRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleSteps, setVisibleSteps] = useState([]);
-  const [lineFillProgress, setLineFillProgress] = useState(0);
-  const stepRefs = useRef([]);
-
-  const timelineRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,40 +72,21 @@ export default function WhatIsWaqfSection() {
 
       const section = sectionRef.current;
       const sectionTop = section.getBoundingClientRect().top;
+      const sectionHeight = section.offsetHeight;
       const windowHeight = window.innerHeight;
 
-      // Calculate progress for title: animation completes when 90% past the hero section
-      const scrollStart = windowHeight;
-      const scrollEnd = windowHeight * 0.1;
-      const progress = Math.max(0, Math.min(1, (scrollStart - sectionTop) / (scrollStart - scrollEnd)));
-      setScrollProgress(progress);
+      // Calculate scroll progress through the section
+      const scrollStart = windowHeight * 0.5;
+      const scrollEnd = -sectionHeight + windowHeight * 0.5;
+      const scrollProgress = (scrollStart - sectionTop) / (scrollStart - scrollEnd);
+      const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
 
-      // Calculate timeline scroll progress - lines fill sequentially, each 0-100%
-      if (timelineRef.current) {
-        const timeline = timelineRef.current;
-        const timelineTop = timeline.getBoundingClientRect().top;
-        
-        // Map scroll position to timeline fill progress (0 to 1)
-        const timelineVisibleStart = windowHeight * 0.8;
-        const timelineVisibleEnd = windowHeight * 0.2;
-        
-        let overallProgress = (timelineVisibleStart - timelineTop) / (timelineVisibleStart - timelineVisibleEnd);
-        overallProgress = Math.max(0, Math.min(1, overallProgress));
-        
-        // Scale overall progress to accommodate all lines
-        // If we have 2 lines, scale by 2 so each line gets 0-100%
-        const numLines = TIMELINE_STEPS.length - 1;
-        const scaledProgress = overallProgress * numLines;
-        
-        // Current line (0, 1, 2, etc) and its fill progress (0-1)
-        const currentLineIndex = Math.floor(scaledProgress);
-        const currentLineFill = scaledProgress - currentLineIndex;
-        
-        setLineFillProgress(currentLineFill);
-        
-        // Store which line we're currently on
-        stepRefs.current.lineIndex = currentLineIndex;
-      }
+      // Determine which card should be active based on scroll progress
+      const cardSize = 1 / WAQF_CARDS.length;
+      let newIndex = Math.floor(clampedProgress / cardSize);
+      newIndex = Math.min(newIndex, WAQF_CARDS.length - 1);
+      
+      setActiveIndex(newIndex);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -82,152 +94,79 @@ export default function WhatIsWaqfSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Stagger step visibility based on line completion
-  useEffect(() => {
-    const newVisibleSteps = [0]; // Step 0 always visible
-    
-    const numLines = TIMELINE_STEPS.length - 1;
-    const overallProgress = (stepRefs.current.lineIndex !== undefined ? stepRefs.current.lineIndex : 0) + lineFillProgress;
-    
-    for (let i = 1; i < TIMELINE_STEPS.length; i++) {
-      // Step i appears when line i-1 is complete (progress >= i)
-      if (overallProgress >= i) {
-        newVisibleSteps.push(i);
-      }
-    }
-    
-    setVisibleSteps(newVisibleSteps);
-  }, [lineFillProgress]);
-
-  // Initial positions (spread across entire page height, then compress to center)
-  const whatStart = { x: -40, y: 0 }; // middle-left (closer to center)
-  const isStart = { x: 0, y: 250 }; // below middle (moved down)
-  const waqfStart = { x: 40, y: 500 }; // bottom-right (closer to center)
-
-  // Final positions (all aligned horizontally at center/middle - in white section)
-  const whatEnd = { x: -80, y: 0 }; // center-left, aligned
-  const isEnd = { x: 0, y: 0 }; // center-middle, aligned
-  const waqfEnd = { x: 80, y: 0 }; // center-right, aligned
-
-  // Linear interpolation
-  const lerp = (start, end, t) => start + (end - start) * t;
-
-  // Calculate current positions based on scroll progress
-  const whatPos = {
-    x: lerp(whatStart.x, whatEnd.x, scrollProgress),
-    y: lerp(whatStart.y, whatEnd.y, scrollProgress),
-  };
-
-  const isPos = {
-    x: lerp(isStart.x, isEnd.x, scrollProgress),
-    y: lerp(isStart.y, isEnd.y, scrollProgress),
-  };
-
-  const waqfPos = {
-    x: lerp(waqfStart.x, waqfEnd.x, scrollProgress),
-    y: lerp(waqfStart.y, waqfEnd.y, scrollProgress),
-  };
-
   return (
     <section className="what-is-waqf" ref={sectionRef}>
-      <Container>
-        {/* Animated Title */}
-        <div className="what-is-waqf__hero">
-          <h2 className="what-is-waqf__title">
-            {/* "What" - top-left, moves slightly down to align */}
-            <span 
-              className="what-is-waqf__title-part"
-              style={{
-                transform: `translate(${whatPos.x}px, ${whatPos.y}px)`,
-              }}
+      <div className="what-is-waqf__layout">
+          {/* Left Side - Sticky Title, Description, CTA */}
+          <div className="what-is-waqf__left">
+            <h2 className="what-is-waqf__title">
+              What is Waqf?
+            </h2>
+            <p className="what-is-waqf__description">
+              Waqf helps improve communities and create lasting impact by understanding needs, 
+              investing sustainably, and making informed decisions that benefit generations to come.
+            </p>
+            <Button 
+              to="/learn-more" 
+              variant="navy" 
+              size="medium"
+              className="what-is-waqf__cta"
             >
-              What
-            </span>
+              Learn More &gt;
+            </Button>
+          </div>
 
-            {/* "is" - middle, moves up to align */}
-            <span 
-              className="what-is-waqf__title-part"
-              style={{
-                transform: `translate(${isPos.x}px, ${isPos.y}px)`,
-              }}
-            >
-              is
-            </span>
-
-            {/* "Waqf?" - bottom-right, moves up and stays right to align */}
-            <span 
-              className="what-is-waqf__title-part"
-              style={{
-                transform: `translate(${waqfPos.x}px, ${waqfPos.y}px)`,
-              }}
-            >
-              Waqf?
-            </span>
-          </h2>
-        </div>
-
-        {/* Timeline Section */}
-        <div className="what-is-waqf__timeline" ref={timelineRef}>
-          <div 
-            className="what-is-waqf__timeline-rail"
-            style={{
-              '--line-fill-progress': `${lineFillProgress * 100}%`,
-              '--filled-lines': stepRefs.current.lineIndex || 0,
-              '--num-lines': TIMELINE_STEPS.length - 1,
-            }}
-          >
-            {TIMELINE_STEPS.map((step, index) => (
+          {/* Right Side - Scrollable Cards */}
+          <div className="what-is-waqf__right">
+            {WAQF_CARDS.map((card, index) => (
               <div
-                key={step.id}
-                ref={(el) => (stepRefs.current[index] = el)}
-                className={`what-is-waqf__step ${
-                  visibleSteps.includes(index) ? 'what-is-waqf__step--visible' : ''
+                key={card.id}
+                className={`what-is-waqf__card ${
+                  index === activeIndex ? 'what-is-waqf__card--active' : ''
                 }`}
               >
-                {/* Timeline Dot */}
-                <div className="what-is-waqf__dot-container">
-                  <div
-                    className={`what-is-waqf__dot ${
-                      visibleSteps.includes(index) ? 'what-is-waqf__dot--active' : ''
-                    }`}
-                  />
-                  {index < TIMELINE_STEPS.length - 1 && (
-                    <div 
-                      className="what-is-waqf__line"
-                      style={{
-                        '--line-index': index,
-                        '--current-line-index': stepRefs.current.lineIndex || 0,
-                        '--current-line-fill': `${lineFillProgress * 100}%`,
-                        '--is-filled': (stepRefs.current.lineIndex || 0) > index 
-                          ? '100%' 
-                          : (stepRefs.current.lineIndex || 0) === index 
-                            ? `${lineFillProgress * 100}%`
-                            : '0%',
-                      }}
-                    />
-                  )}
-                </div>
+                <div className="what-is-waqf__card-content">
+                  {/* Left Side - Text */}
+                  <div className="what-is-waqf__card-left">
+                    {/* Card Header */}
+                    <div className="what-is-waqf__card-header">
+                      <span className="what-is-waqf__card-number">{card.number}</span>
+                      <h3 className="what-is-waqf__card-title">{card.title}</h3>
+                    </div>
 
-                {/* Step Content + Image Row */}
-                <div className="what-is-waqf__step-row">
-                  {/* Step Text */}
-                  <div className="what-is-waqf__step-content">
-                    <h3 className="what-is-waqf__step-title">{step.title}</h3>
-                    <p className="what-is-waqf__step-description">
-                      {step.description}
+                    {/* Card Description */}
+                    <p className="what-is-waqf__card-description">
+                      {card.description}
                     </p>
+
+                    {/* Card CTA Button */}
+                    <Button 
+                      to={`/learn-more#${card.id}`}
+                      variant="muted"
+                      size="small"
+                      className="what-is-waqf__card-cta"
+                    >
+                      {card.ctaText} &gt;
+                    </Button>
                   </div>
 
-                  {/* Step Image */}
-                  <div className="what-is-waqf__step-image">
-                    <img src={step.image} alt={step.title} />
+                  {/* Right Side - Image Placeholder */}
+                  <div className="what-is-waqf__card-right">
+                    <div className="what-is-waqf__card-chart">
+                      <div className="what-is-waqf__chart-header">
+                        <h4 className="what-is-waqf__chart-title">{card.chartTitle}</h4>
+                        <span className="what-is-waqf__chart-subtitle">{card.chartSubtitle}</span>
+                      </div>
+                      <div className="what-is-waqf__chart-placeholder">
+                        {/* Placeholder container for image/chart */}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </Container>
     </section>
   );
 }
